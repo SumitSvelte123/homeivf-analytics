@@ -3,7 +3,6 @@ export interface ILogin {
   password: string;
 }
 
-
 export interface ILoginRes {
   message: string;
   data: {
@@ -16,3 +15,19 @@ export interface ILoginRes {
   };
   uniqueReqId: string;
 }
+
+export interface IStats {
+  title: string;
+  type: StatType;
+  image: string;
+  value: string;
+  description: string;
+}
+
+export type StatType =
+  | "OPD"
+  | "IPD"
+  | "PATIENT"
+  | "BLOOD"
+  | "KIT"
+  | "PRESCRIPTION";

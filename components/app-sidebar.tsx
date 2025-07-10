@@ -21,6 +21,7 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -28,6 +29,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { AppLogo } from "./app.logo";
 
 const menuData = [
   {
@@ -37,7 +39,7 @@ const menuData = [
     items: [
       {
         title: "Clinical Metrics",
-        icon: <Syringe className="text-inherit" />,
+        icon: <Syringe />,
         url: "#",
       },
       {
@@ -61,7 +63,15 @@ const menuData = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="floating" className="relative p-2 2xl:p-0 h-[calc(100vh-100px)] 2xl:h-[calc(100vh-120px)]">
+    <Sidebar
+      variant="floating"
+      className="relative p-2 2xl:p-0 h-[calc(100vh-100px)] 2xl:h-[calc(100vh-120px)]"
+    >
+      <SidebarHeader className="block lg:hidden bg-primary">
+        <div className="relative w-52 h-16">
+          <AppLogo />
+        </div>
+      </SidebarHeader>
       <SidebarContent className="bg-white rounded-md rounded-b-none py-2">
         <SidebarGroup>
           <SidebarGroupContent>
@@ -77,20 +87,22 @@ export function AppSidebar() {
                       <SidebarMenuButton className="w-full justify-between text-primary hover:text-primary data-[state=open]:text-primary">
                         <div className="font-semibold flex gap-2">
                           {section.icon}
-                          <span className="text-base">{section.title}</span>
+                          <span className="text-xl xl:text-base">
+                            {section.title}
+                          </span>
                         </div>
                         <ChevronDown className="ml-auto transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <SidebarMenuSub className="gap-2 mt-2">
+                      <SidebarMenuSub className="gap-4 xl:gap-2 mt-2">
                         {section.items.map((item) => (
                           <SidebarMenuSubItem key={item.title}>
                             <SidebarMenuSubButton
                               asChild
-                              className="font-semibold text-grey-500 hover:text-primary hover:bg-transparent"
+                              className="font-semibold text-grey-500 hover:text-primary hover:bg-transparent text-lg xl:text-base"
                             >
-                              <Link href={item.url}>
+                              <Link href={item.url} >
                                 {item.icon}
                                 <span>{item.title}</span>
                               </Link>
