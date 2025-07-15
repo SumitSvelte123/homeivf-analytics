@@ -15,7 +15,7 @@ export const StatsCard = ({
         <h2 className="text-base font-bold text-primary">{title}</h2>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">
-            {value}{" "}
+            {value.toLocaleString()}
             <span className="text-base font-normal text-green-500">(•40x)</span>
           </h1>
           <p className="text-gray-500 font-semibold text-sm">{description}</p>

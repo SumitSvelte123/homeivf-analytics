@@ -20,7 +20,7 @@ export interface IStats {
   title: string;
   type: StatType;
   image: string;
-  value: string;
+  value: number;
   description: string;
 }
 
@@ -30,4 +30,4 @@ export type StatType =
   | "PATIENT"
   | "BLOOD"
   | "KIT"
-  | "PRESCRIPTION";
+  | "PRESCRIPTION"
