@@ -40,22 +40,22 @@ const menuData = [
       {
         title: "Clinical Metrics",
         icon: <Syringe />,
-        url: "#",
+        url: "/",
       },
       {
         title: "Operational Metrics",
         icon: <Hospital />,
-        url: "#",
+        url: "/",
       },
       {
         title: "Financial Metrics",
         icon: <CalendarDays />,
-        url: "#",
+        url: "/",
       },
       {
         title: "Patient Experience",
         icon: <FileText />,
-        url: "#",
+        url: "/",
       },
     ],
   },
@@ -97,12 +97,15 @@ export function AppSidebar() {
                     <CollapsibleContent>
                       <SidebarMenuSub className="gap-4 xl:gap-2 mt-2">
                         {section.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
+                          <SidebarMenuSubItem
+                            key={item.title}
+                            className="relative before:absolute before:left-[-11px] before:top-3 before:h-px before:w-3 before:bg-gray-200 before:content-[''] after:absolute after:left-[-4px] after:top-[10px] after:h-1.5 after:w-1.5 after:rounded-full after:bg-gray-300 after:content-['']"
+                          >
                             <SidebarMenuSubButton
                               asChild
-                              className="font-semibold text-grey-500 hover:text-primary hover:bg-transparent text-lg xl:text-base"
+                              className="font-semibold text-grey-500 hover:text-primary hover:bg-transparent text-md"
                             >
-                              <Link href={item.url} >
+                              <Link href={item.url}>
                                 {item.icon}
                                 <span>{item.title}</span>
                               </Link>
