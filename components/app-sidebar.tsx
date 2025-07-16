@@ -5,8 +5,7 @@ import {
   ChevronDown,
   FileText,
   Hospital,
-  LayoutDashboard,
-  LogOut,
+  LayoutDashboard,  
   Syringe,
 } from "lucide-react";
 
@@ -31,6 +30,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppLogo } from "./app.logo";
 import { cn } from "@/lib/utils";
+import { LogoutAction } from "./auth/logout";
 
 const menuData = [
   {
@@ -140,12 +140,7 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="bg-white rounded-md">
-        <SidebarMenu className="p-2">
-          <SidebarMenuItem className="flex gap-2 items-center text-red-500 bg-red-100 p-2 rounded-md cursor-pointer">
-            <LogOut size={18} />
-            Logout
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <LogoutAction />
       </SidebarFooter>
     </Sidebar>
   );

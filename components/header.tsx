@@ -1,7 +1,8 @@
+import { Bell, Mail } from "lucide-react";
+
 import { AppLogo } from "@/components/app.logo";
 import { AppWrapper } from "@/components/app-wrapper";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, Mail } from "lucide-react";
 
 export const AuthHeader = () => {
   return (
