@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Eye, EyeOff, KeyRound, Mail } from "lucide-react";
+import { Eye, EyeOff, KeyRound, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useSignIn } from "@/hooks/auth";
-import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/spinner";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import type { ILogin } from "@/types/auth.type";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -37,18 +38,18 @@ export const LoginForm = () => {
         <div
           className={cn(
             "flex items-center border-b border-black/60",
-            errors.email && "border-red-500"
+            errors.username && "border-red-500"
           )}
         >
-          <Mail />
+          <User />
           <Input
             autoFocus
-            placeholder="Email"
+            placeholder="Username"
             className="border-none shadow-none focus-visible:ring-[0px]"
-            {...register("email", { required: "Email is required" })}
+            {...register("username", { required: "Username is required" })}
           />
         </div>
-        {errors.email && <FieldError message={errors.email.message} />}
+        {errors.username && <FieldError message={errors.username.message} />}
       </div>
       <div className="grid gap-0.5">
         <div
@@ -90,10 +91,10 @@ export const LoginForm = () => {
       <div className="absolute w-full left-0 -bottom-[20px] flex justify-center">
         <Button
           size="lg"
-          className="w-72 text-base 3xl:text-lg hover:bg-primary hover:cursor-pointer"
+          className="w-72 text-base 3xl:text-lg hover:bg-primary hover:cursor-pointer disabled:opacity-100"
           disabled={isPending}
         >
-          Login
+          {isPending ? <Spinner /> : "Login"}
         </Button>
       </div>
     </form>

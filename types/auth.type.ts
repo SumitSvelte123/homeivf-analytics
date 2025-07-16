@@ -1,19 +1,16 @@
 export interface ILogin {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface ILoginRes {
   message: string;
   data: {
-    accessToken: string;
-    refreshToken: string;
+    access_token: string;
+    refresh_token: string;
     expiresIn: string;
-    user: {
-      fullName: string;
-    };
-  };
-  uniqueReqId: string;
+    role_type: string
+  }
 }
 
 export interface IStats {

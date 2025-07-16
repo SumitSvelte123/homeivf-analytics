@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <TanstackQueryProvider>{children}</TanstackQueryProvider>{" "}
-        <Toaster position="top-right" />
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

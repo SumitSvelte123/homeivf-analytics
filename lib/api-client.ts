@@ -7,14 +7,11 @@ function clearCookies() {
   deleteCookie("refresh_token");
   deleteCookie("username");
 
-  redirect("/")
+  redirect("/");
 }
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: {
-    device: "WEB",
-  },
 });
 
 axiosInstance.interceptors.request.use(

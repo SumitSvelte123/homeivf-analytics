@@ -33,7 +33,7 @@ export const MainHeader = () => {
 
           <Mail />
           <h1 className="hidden md:block">
-            Hey, <span className="font-semibold">Anna</span>
+            Hey, <span className="font-semibold">Admin</span>
           </h1>
           <Avatar className="ring-2 ring-white size-10 rounded-md">
             <AvatarImage src="https://github.com/shadcn.png" />

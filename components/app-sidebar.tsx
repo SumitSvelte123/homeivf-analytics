@@ -30,6 +30,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { AppLogo } from "./app.logo";
+import { cn } from "@/lib/utils";
 
 const menuData = [
   {
@@ -95,23 +96,39 @@ export function AppSidebar() {
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <SidebarMenuSub className="gap-4 xl:gap-2 mt-2">
-                        {section.items.map((item) => (
-                          <SidebarMenuSubItem
-                            key={item.title}
-                            className="relative before:absolute before:left-[-11px] before:top-3 before:h-px before:w-3 before:bg-gray-200 before:content-[''] after:absolute after:left-[-4px] after:top-[10px] after:h-1.5 after:w-1.5 after:rounded-full after:bg-gray-300 after:content-['']"
-                          >
-                            <SidebarMenuSubButton
-                              asChild
-                              className="font-semibold text-grey-500 hover:text-primary hover:bg-transparent text-md"
+                      <SidebarMenuSub className="gap-4 xl:gap-2 mt-2 border-l-2 border-grey-500">
+                        {section.items.map((item, index) => {
+                          const isActive = index === 0;                          
+
+                          return (
+                            <SidebarMenuSubItem
+                              key={item.title}
+                              className={cn(
+                                "relative before:absolute before:left-[-12px] before:top-[-12px] before:bottom-3 before:w-[2px] before:content-[''] after:absolute after:left-[-11px] after:top-3 after:h-[2px] after:w-2 after:content-[''] after:bg-gray-400",
+                                isActive && "after:bg-primary before:bg-primary"
+                              )}
                             >
-                              <Link href={item.url}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
+                              <div
+                                className={cn(
+                                  "absolute z-10 left-[-4px] top-[10px] h-1.5 w-1.5 rounded-full bg-grey-500",
+                                  isActive && "bg-primary"
+                                )}
+                              />
+                              <SidebarMenuSubButton
+                                asChild
+                                className={cn(
+                                  "font-semibold text-grey-500 hover:text-primary hover:bg-transparent text-md",
+                                  isActive && "text-primary"
+                                )}
+                              >
+                                <Link href={item.url}>
+                                  {item.icon}
+                                  <span>{item.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>
