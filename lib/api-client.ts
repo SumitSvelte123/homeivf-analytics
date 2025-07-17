@@ -18,7 +18,7 @@ axiosInstance.interceptors.request.use(
   function (config) {
     const token = getCookie("access_token");
     if (token) {
-      config.headers["X-ACCESS-TOKEN"] = token;
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },

@@ -66,16 +66,18 @@ export function PackageChart() {
             </CardDescription>
           </div>
 
-          <Select>
+          <Select defaultValue="all">
             <SelectTrigger
-              className="ml-auto min-w-40 h-7 pl-2.5"
-              aria-label="Select a Package"                          
+              className="ml-auto min-w-36 h-7 pl-2.5"
+              aria-label="Select Status"
             >
-              <SelectValue placeholder="Select Package" />
+              <SelectValue placeholder="Select Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All</SelectItem>
-              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="active">Activated</SelectItem>
+              <SelectItem value="not-active">Not Activated</SelectItem>
+              <SelectItem value="pain">Fully Paid</SelectItem>
             </SelectContent>
           </Select>
         </div>
