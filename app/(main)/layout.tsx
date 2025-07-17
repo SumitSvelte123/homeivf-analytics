@@ -9,6 +9,7 @@ import { AppWrapper } from "@/components/app-wrapper";
 import { SearchFilter } from "@/components/dashboard/filters/search";
 import { DateRangeFilter } from "@/components/dashboard/filters/range";
 import { DoctorFilter } from "@/components/dashboard/filters/doctors";
+import { Suspense } from "react";
 
 export default function MainLayout({
   children,
@@ -25,9 +26,11 @@ export default function MainLayout({
             <div className="relative">
               <SidebarTrigger className="block lg:hidden fixed right-0" />
               <main className="pb-5">
-                <div className="grid items-center lg:grid-cols-2 xl:grid-cols-4 mb-5 gap-5">
+                <div className="grid items-center lg:grid-cols-2 xl:grid-cols-4 mb-5 gap-3 lg:gap-5">
                   <SearchFilter />
-                  <DoctorFilter />
+                  <Suspense>
+                    <DoctorFilter />
+                  </Suspense>
                   <DateRangeFilter />
                 </div>
                 {children}

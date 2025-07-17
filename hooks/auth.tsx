@@ -1,5 +1,3 @@
-"use client";
-
 import { toast } from "sonner";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
