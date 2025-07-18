@@ -60,7 +60,7 @@ export function PackageChart() {
             <CardTitle className="text-xl text-primary font-bold">
               Package(s)
             </CardTitle>
-            <CardDescription className="max-w-4/5 text-gray-500">
+            <CardDescription className="max-w-4/5 text-gray-500 text-xs 2xl:text-base">
               There ore plenty of tree wet prory shes toe, you con vee. The
               prottem is thot mony of the populor ones diso get blocked.
             </CardDescription>

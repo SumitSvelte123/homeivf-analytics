@@ -26,7 +26,7 @@ export default function MainLayout({
             <div className="relative">
               <SidebarTrigger className="block lg:hidden fixed right-0" />
               <main className="pb-5">
-                <div className="grid items-center lg:grid-cols-2 xl:grid-cols-4 mb-5 gap-3 lg:gap-5">
+                <div className="grid items-center lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-5 gap-3 lg:gap-5">
                   <SearchFilter />
                   <Suspense>
                     <DoctorFilter />
