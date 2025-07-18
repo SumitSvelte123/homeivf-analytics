@@ -1,4 +1,4 @@
-import { Bell, Mail } from "lucide-react";
+import { Bell } from "lucide-react";
 
 import { AppLogo } from "@/components/app.logo";
 import { AppWrapper } from "@/components/app-wrapper";
@@ -31,8 +31,7 @@ export const MainHeader = () => {
               <span className="relative inline-flex size-2 rounded-full bg-red-500"></span>
             </span>
           </div>
-
-          <Mail />
+          
           <h1 className="hidden md:block">
             Hey, <span className="font-semibold">Admin</span>
           </h1>

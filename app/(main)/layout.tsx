@@ -30,8 +30,8 @@ export default function MainLayout({
                   <SearchFilter />
                   <Suspense>
                     <DoctorFilter />
+                    <DateRangeFilter />
                   </Suspense>
-                  <DateRangeFilter />
                 </div>
                 {children}
               </main>

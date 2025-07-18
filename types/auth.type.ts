@@ -13,18 +13,3 @@ export interface ILoginRes {
   }
 }
 
-export interface IStats {
-  title: string;
-  type: StatType;
-  image: string;
-  value: number;
-  description: string;
-}
-
-export type StatType =
-  | "OPD"
-  | "IPD"
-  | "PATIENT"
-  | "BLOOD"
-  | "KIT"
-  | "PRESCRIPTION"

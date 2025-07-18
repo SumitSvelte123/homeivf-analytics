@@ -22,7 +22,7 @@ export const DateRangeFilter = () => {
         </ToggleGroupItem>
       </ToggleGroup>
 
-      <RangeCalender className="flex-1" />
+      <RangeCalender className="flex-1 border-l-2" />
     </div>
   );
 };
