@@ -25,7 +25,7 @@ export function PackageChart() {
   const totalPackages = packageData.reduce((acc, curr) => acc + curr.count, 0);
 
   return (
-    <ChartContainer config={{}} className="mx-auto aspect-square max-h-[300px]">
+    <ChartContainer config={{}} className="mx-auto aspect-square max-h-80">
       <PieChart>
         <ChartTooltip
           cursor={false}

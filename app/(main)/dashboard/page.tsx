@@ -4,6 +4,7 @@ import { StatsTable } from "@/components/dashboard/stats-table";
 import { PackageChart } from "@/components/dashboard/charts/package";
 import { ClinicalMetrics } from "@/components/dashboard/clinical-mertrics";
 import { PackageContainer } from "@/components/dashboard/package-container";
+import { PerformanceContainer } from "@/components/dashboard/performance-container";
 
 export default function DashboardPage() {
   return (
@@ -21,7 +22,12 @@ export default function DashboardPage() {
             <PackageChart />
           </Suspense>
         </PackageContainer>
-        <StatsTable />
+
+        <PerformanceContainer>
+          <Suspense>
+            <StatsTable />
+          </Suspense>
+        </PerformanceContainer>
       </div>
     </div>
   );

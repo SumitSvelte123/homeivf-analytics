@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 import {
   Card,
@@ -7,13 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { PackageStatusFilter } from "./filters/package-status";
 
 export const PackageContainer = ({ children }: { children: ReactNode }) => {
   return (
@@ -30,25 +24,12 @@ export const PackageContainer = ({ children }: { children: ReactNode }) => {
             </CardDescription>
           </div>
 
-          <Select defaultValue="all">
-            <SelectTrigger
-              className="ml-auto min-w-36 h-7 pl-2.5"
-              aria-label="Select Status"
-            >
-              <SelectValue placeholder="Select Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="active">Activated</SelectItem>
-              <SelectItem value="not-active">Not Activated</SelectItem>
-              <SelectItem value="pain">Fully Paid</SelectItem>
-            </SelectContent>
-          </Select>
+          <Suspense>
+            <PackageStatusFilter />
+          </Suspense>
         </div>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        {children}
-      </CardContent>
+      <CardContent className="flex-1 pb-0">{children}</CardContent>
     </Card>
   );
 };

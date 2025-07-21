@@ -16,7 +16,9 @@ export const useFilter = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(key, value);
 
-    setTransaction(() => router.push(pathname + "?" + params.toString()));
+    setTransaction(() =>
+      router.push(pathname + "?" + params.toString(), { scroll: false })
+    );
   };
 
   const applyFilters = (paramArg: IParamsArg[]) => {
@@ -24,14 +26,18 @@ export const useFilter = () => {
 
     paramArg.map((param) => params.set(param.key, param.value));
 
-    setTransaction(() => router.push(pathname + "?" + params.toString()));
+    setTransaction(() =>
+      router.push(pathname + "?" + params.toString(), { scroll: false })
+    );
   };
 
   const removeFilter = (key: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete(key);
 
-    setTransaction(() => router.push(pathname + "?" + params.toString()));
+    setTransaction(() =>
+      router.push(pathname + "?" + params.toString(), { scroll: false })
+    );
   };
 
   return {

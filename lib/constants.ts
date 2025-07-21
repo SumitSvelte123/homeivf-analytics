@@ -1,4 +1,8 @@
-import { IStats } from "@/types/matrix.type";
+import {
+  IDashboardWeekMatrix,
+  IStats,
+  IWeekPerformanceStats,
+} from "@/types/matrix.type";
 
 export const SERVER_ERROR = "Something went wrong. Please try again";
 
@@ -74,5 +78,55 @@ export const STATS: IStats[] = [
     image: "/icons/ipd-done.svg",
     value: 32842,
     description: "Analytics for IPD(s) Done",
-  }
+  },
 ];
+
+export const WEEK_STATS: {
+  [K in keyof IDashboardWeekMatrix]: IWeekPerformanceStats;
+} = {
+  opd_booked: {
+    title: "No. of OPD(s) Booked",
+    type: "OPD_BOOKED",
+    image: "/icons/opd.svg",
+  },
+  opd_done: {
+    title: "No. of OPD(s) Done",
+    type: "OPD_DONE",
+    image: "/icons/ipd.svg",
+  },
+  patient_registered: {
+    title: "No. of Patient(s) Registered",
+    type: "PATIENT",
+    image: "/icons/patient.svg",
+  },
+  blood_test: {
+    title: "No. of Blood test(s) Booked",
+    type: "BLOOD",
+    image: "/icons/blood.svg",
+  },
+  kits: {
+    title: "No. of Kit(s) Booked",
+    type: "KIT",
+    image: "/icons/kits.svg",
+  },
+  prescription: {
+    title: "No. of Prescription(s) Generated",
+    type: "PRESCRIPTION",
+    image: "/icons/pres.svg",
+  },
+  patient_enrolled: {
+    title: "No. of Patient(s) Enrolled",
+    type: "PATIENT_ENROLLED",
+    image: "/icons/patient-enroll.svg",
+  },
+  ipd_booked: {
+    title: "No. of IPD(s) Booked",
+    type: "IPD_BOOKED",
+    image: "/icons/ipd-booked.svg",
+  },
+  ipd_done: {
+    title: "No. of IPD(s) Done",
+    type: "IPD_DONE",
+    image: "/icons/ipd-done.svg",
+  },
+};

@@ -34,3 +34,29 @@ export interface IPackageMatrix {
   package: string;
   count: number;
 }
+
+export interface IDashboardWeekMatrix {
+  opd_booked: number;
+  opd_done: number;
+  ipd_booked: number;
+  ipd_done: number;
+  patient_registered: number;
+  patient_enrolled: number;
+  blood_test: number;
+  kits: number;
+  prescription: number;
+}
+export interface IWeekPerformanceStats {
+  title: string;
+  type: StatType;
+  image: string;  
+}
+
+export type IGrowthType = "positive" | "no_change" | "negative";
+
+export interface IWeekPerformance {
+  item: keyof IDashboardWeekMatrix;
+  this_week_count: number;
+  growth_status: IGrowthType;
+  this_week_growth_compared_previous_week: string;
+}

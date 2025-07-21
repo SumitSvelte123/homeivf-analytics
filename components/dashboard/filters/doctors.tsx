@@ -25,7 +25,7 @@ export const DoctorFilter = () => {
   const [open, setOpen] = useState(false);
   const searchParams = useSearchParams();
 
-  const doctorId = searchParams.get("doctor-id") || "";
+  const doctorId = searchParams.get("doctor_id") || "";
 
   const { applyFilter, removeFilter } = useFilter();
   const { data, isPending } = useFetchDoctors();
@@ -49,7 +49,7 @@ export const DoctorFilter = () => {
             <span
               onClick={(e) => {
                 e.stopPropagation();
-                removeFilter("doctor-id");
+                removeFilter("doctor_id");
               }}
             >
               <CircleX className="text-red-500 opacity-80" size={18} />
@@ -71,7 +71,7 @@ export const DoctorFilter = () => {
                   data-id={doctor.id}
                   value={doctor.name}
                   onSelect={() => {
-                    applyFilter("doctor-id", doctor.id);
+                    applyFilter("doctor_id", doctor.id);
                     setOpen(false);
                   }}
                 >

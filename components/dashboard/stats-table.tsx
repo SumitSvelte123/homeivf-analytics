@@ -1,10 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+"use client";
+
+import Image from "next/image";
+import { ArrowBigDownDashIcon, ArrowBigUpDashIcon } from "lucide-react";
+
 import {
   Table,
   TableBody,
@@ -12,164 +10,66 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import Image from "next/image";
-import { ArrowBigDownDashIcon, ArrowBigUpDashIcon } from "lucide-react";
+} from "@/components/ui/table";
+import { WEEK_STATS } from "@/lib/constants";
+import { useWeekPerformance } from "@/hooks/use-metrics";
 
 export const StatsTable = () => {
+  const { data, isPending } = useWeekPerformance();
+
+  if (!data || isPending) return "Loading...";
+
+  const performances = data.data.data || [];
+
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="items-center pb-0">
-        <CardTitle className="text-xl text-primary font-bold">
-          Week Performance
-        </CardTitle>
-        <CardDescription />
-      </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader className="bg-[#F2F5F6]">
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead className="text-center">Current Week</TableHead>
-              <TableHead className="text-center">Last Week</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
+    <div className="max-h-96 overflow-auto">
+      <Table>
+        <TableHeader className="bg-[#F2F5F6]">
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead className="text-center">Current Week</TableHead>
+            <TableHead className="text-center">Last Week</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {performances.map((performance) => (
+            <TableRow key={performance.item}>
               <TableCell>
                 <div className="flex items-center gap-2">
                   <Image
-                    src="/icons/opd.svg"
+                    src={WEEK_STATS[performance.item].image}
                     width={16}
                     height={18}
-                    alt="OPD"
+                    alt={WEEK_STATS[performance.item].title}
                   />{" "}
-                  <span className="text-sm font-semibold">OPD(s) Done</span>
+                  <span className="text-sm font-semibold">
+                    {WEEK_STATS[performance.item].title}
+                  </span>
                 </div>
               </TableCell>
               <TableCell className="text-center text-sm font-semibold">
-                28,402
+                {performance.this_week_count}
               </TableCell>
               <TableCell className="text-sm font-semibold">
                 <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigUpDashIcon className="text-green-500" />
+                  <span className="w-6">
+                    {performance.this_week_growth_compared_previous_week}
+                  </span>
+                  {performance.growth_status === "positive" && (
+                    <ArrowBigUpDashIcon className="text-green-500" />
+                  )}
+                  {performance.growth_status === "negative" && (
+                    <ArrowBigDownDashIcon className="text-red-500" />
+                  )}
+                  {performance.growth_status === "no_change" && (
+                    <ArrowBigUpDashIcon className="text-yellow-500" />
+                  )}
                 </div>
               </TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/icons/ipd.svg"
-                    width={16}
-                    height={18}
-                    alt="IPD"
-                  />{" "}
-                  <span className="text-sm font-semibold">IPD(s) Done</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm font-semibold">
-                28,402
-              </TableCell>
-              <TableCell className="text-sm font-semibold">
-                <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigUpDashIcon className="text-green-500" />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/icons/blood.svg"
-                    width={16}
-                    height={18}
-                    alt="OPD"
-                  />{" "}
-                  <span className="text-sm font-semibold">Blood(s) Done</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm font-semibold">
-                28,402
-              </TableCell>
-              <TableCell className="text-sm font-semibold">
-                <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigUpDashIcon className="text-yellow-500" />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/icons/patient.svg"
-                    width={16}
-                    height={18}
-                    alt="OPD"
-                  />{" "}
-                  <span className="text-sm font-semibold">Patient(s) Done</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm font-semibold">
-                28,402
-              </TableCell>
-              <TableCell className="text-sm font-semibold">
-                <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigUpDashIcon className="text-green-500" />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/icons/kits.svg"
-                    width={16}
-                    height={18}
-                    alt="OPD"
-                  />{" "}
-                  <span className="text-sm font-semibold">Kit(s) Done</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm font-semibold">
-                28,402
-              </TableCell>
-              <TableCell className="text-sm font-semibold">
-                <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigDownDashIcon className="text-red-500" />
-                </div>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <Image
-                    src="/icons/pres.svg"
-                    width={16}
-                    height={18}
-                    alt="OPD"
-                  />{" "}
-                  <span className="text-sm font-semibold">Prescription(s) Done</span>
-                </div>
-              </TableCell>
-              <TableCell className="text-center text-sm font-semibold">
-                28,402
-              </TableCell>
-              <TableCell className="text-sm font-semibold">
-                <div className="flex gap-2 justify-center">
-                  <span>41.48%</span>{" "}
-                  <ArrowBigDownDashIcon className="text-red-500" />
-                </div>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
