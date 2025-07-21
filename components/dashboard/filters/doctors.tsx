@@ -20,7 +20,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useFilter } from "@/hooks/use-filter";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export const DoctorFilter = () => {
   const [open, setOpen] = useState(false);
@@ -30,9 +29,8 @@ export const DoctorFilter = () => {
 
   const { applyFilter, removeFilter } = useFilter();
   const { data, isPending } = useFetchDoctors();
-
-  if (!data || isPending) return <Skeleton className="w-full h-10" />;
-  const doctors = data.data.data || [];
+  
+  const doctors = data?.data.data || [];
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -41,11 +39,12 @@ export const DoctorFilter = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between font-semibold text-gray-500 h-10 shadow"
-        >
+          className="justify-between font-semibold text-gray-500 h-10 shadow disabled:opacity-100"          
+          disabled={isPending}
+        >          
           {doctorId
             ? doctors.find((doctor) => doctor.id === doctorId)?.name
-            : "Select a doctor"}
+            : isPending ? "Loading..." : "Select a doctor"}
           {doctorId ? (
             <span
               onClick={(e) => {

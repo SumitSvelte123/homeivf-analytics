@@ -3,7 +3,7 @@ export interface IStats {
   type: StatType;
   image: string;
   value: number;
-  description?: string;  
+  description?: string;
   accesskey: keyof IDashboardMatrix;
 }
 
@@ -28,4 +28,9 @@ export interface IDashboardMatrix {
   blood_test_count: number;
   kits_count: number;
   prescription_count: number;
+}
+
+export interface IPackageMatrix {
+  package: string;
+  count: number;
 }
