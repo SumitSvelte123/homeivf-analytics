@@ -17,9 +17,9 @@ import type {
 export const useDashboardMetrics = () => {
   const params = useSearchParams();
 
-  const doctorId = params.get("doctor_id") || false;
-  const fromDate = params.get("from") || false;
-  const toDate = params.get("to") || false;
+  const doctorId = params.get("doctor_id") || "";
+  const fromDate = params.get("from") || "";
+  const toDate = params.get("to") || "";
 
   const url = new URL(GET_DASHBOARD_MATRIX, process.env.NEXT_PUBLIC_API_URL);
 
@@ -27,7 +27,7 @@ export const useDashboardMetrics = () => {
   if (fromDate) url.searchParams.append("start_date", fromDate);
   if (doctorId) url.searchParams.append("doctor_id", doctorId);
 
-  return useQuery({
+  const query = useQuery({
     queryKey: [GET_DASHBOARD_MATRIX, doctorId, fromDate, toDate].filter(
       Boolean
     ),
@@ -35,6 +35,12 @@ export const useDashboardMetrics = () => {
       return api.get(url.toString());
     },
   });
+
+  return {
+    ...query,
+    fromDate,
+    toDate,
+  };
 };
 
 export const useGetPackages = () => {

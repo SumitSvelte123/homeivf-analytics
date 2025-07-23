@@ -5,6 +5,7 @@ export interface IStats {
   value: number;
   description?: string;
   accesskey: keyof IDashboardMatrix;
+  slug: string;
 }
 
 export type StatType =
