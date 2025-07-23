@@ -24,7 +24,9 @@ export const useFilter = () => {
   const applyFilters = (paramArg: IParamsArg[]) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    paramArg.map((param) => params.set(param.key, param.value));
+    paramArg.forEach((param) => {
+      params.set(param.key, param.value);
+    });
 
     setTransaction(() =>
       router.push(pathname + "?" + params.toString(), { scroll: false })
@@ -40,10 +42,23 @@ export const useFilter = () => {
     );
   };
 
+  const removeFilters = (keys: string[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    keys.forEach((key) => {
+      params.delete(key);
+    });
+
+    setTransaction(() =>
+      router.push(pathname + "?" + params.toString(), { scroll: false })
+    );
+  };
+
   return {
     isApplying: isPending,
     applyFilter,
     applyFilters,
     removeFilter,
+    removeFilters,
   };
 };

@@ -27,9 +27,9 @@ export const DoctorFilter = () => {
 
   const doctorId = searchParams.get("doctor_id") || "";
 
-  const { applyFilter, removeFilter } = useFilter();
   const { data, isPending } = useFetchDoctors();
-  
+  const { applyFilter, removeFilter, isApplying } = useFilter();
+
   const doctors = data?.data.data || [];
 
   return (
@@ -39,12 +39,14 @@ export const DoctorFilter = () => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between font-semibold text-gray-500 h-10 shadow disabled:opacity-100"          
-          disabled={isPending}
-        >          
+          className="justify-between font-semibold text-gray-500 h-10 shadow disabled:opacity-100"
+          disabled={isPending || isApplying}
+        >
           {doctorId
             ? doctors.find((doctor) => doctor.id === doctorId)?.name
-            : isPending ? "Loading..." : "Select a doctor"}
+            : isPending
+            ? "Loading..."
+            : "Select a doctor"}
           {doctorId ? (
             <span
               onClick={(e) => {

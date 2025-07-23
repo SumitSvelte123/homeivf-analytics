@@ -32,6 +32,22 @@ export const STATS: IStats[] = [
     description: "Analytics for Patient(s) Registered",
   },
   {
+    accesskey: "patient_registered_female_count",
+    title: "No. of Female Patient(s)",
+    type: "FEMALE",
+    image: "/icons/female.svg",
+    value: 32842,
+    description: "Analytics for Female Patient(s)",
+  },
+  {
+    accesskey: "patient_registered_male_count",
+    title: "No. of Male Patient(s)",
+    type: "MALE",
+    image: "/icons/male.svg",
+    value: 32842,
+    description: "Analytics for Male Patient(s)",
+  },
+  {
     accesskey: "blood_test_count",
     title: "No. of Blood test(s) Booked",
     type: "BLOOD",
@@ -70,6 +86,14 @@ export const STATS: IStats[] = [
     image: "/icons/ipd-booked.svg",
     value: 32842,
     description: "Analytics for IPD(s) Booked",
+  },
+  {
+    accesskey: "ipd_partial_count",
+    title: "No. of IPD(s) Partial",
+    type: "IPD_PARTIAL",
+    image: "/icons/ipd-partial.svg",
+    value: 32842,
+    description: "Analytics for IPD(s) Partial",
   },
   {
     accesskey: "ipd_done_count",

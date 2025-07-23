@@ -18,7 +18,7 @@ export function PackageChart() {
 
   if (!data || isPending) return <NoDataFound />;
 
-  const packageData = data.data.data || [];  
+  const packageData = data?.data.data || [];  
   if (!packageData.length) return <NoDataFound />
 
   const colorCodes = generateUniqueColors(packageData.length)

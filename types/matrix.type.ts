@@ -11,19 +11,25 @@ export type StatType =
   | "OPD_BOOKED"
   | "OPD_DONE"
   | "PATIENT"
+  | "MALE"
+  | "FEMALE"
   | "BLOOD"
   | "KIT"
   | "PRESCRIPTION"
   | "PATIENT_ENROLLED"
   | "IPD_BOOKED"
-  | "IPD_DONE";
+  | "IPD_DONE"
+  | "IPD_PARTIAL";
 
 export interface IDashboardMatrix {
   opd_booked_count: number;
   opd_done_count: number;
   ipd_booked_count: number;
   ipd_done_count: number;
+  ipd_partial_count: number;
   patient_registered_count: number;
+  patient_registered_male_count: number;
+  patient_registered_female_count: number;
   patient_enrolled_count: number;
   blood_test_count: number;
   kits_count: number;
@@ -49,7 +55,7 @@ export interface IDashboardWeekMatrix {
 export interface IWeekPerformanceStats {
   title: string;
   type: StatType;
-  image: string;  
+  image: string;
 }
 
 export type IGrowthType = "positive" | "no_change" | "negative";
