@@ -14,8 +14,8 @@ export const StatsCard = ({
   title,
   value,
   isFetching,
-  description,
-}: IProps) => {
+  description,  
+}: IProps) => {  
   const formattedValue = value.toLocaleString().toString().padStart(2, "0");
 
   return (

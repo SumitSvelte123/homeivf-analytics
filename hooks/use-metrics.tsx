@@ -17,53 +17,49 @@ import type {
 export const useDashboardMetrics = () => {
   const params = useSearchParams();
 
-  const doctorId = params.get("doctor_id") || "";
-  const fromDate = params.get("from") || "";
-  const toDate = params.get("to") || "";
-
-  const url = new URL(GET_DASHBOARD_MATRIX, process.env.NEXT_PUBLIC_API_URL);
-
-  if (toDate) url.searchParams.append("end_date", toDate);
-  if (fromDate) url.searchParams.append("start_date", fromDate);
-  if (doctorId) url.searchParams.append("doctor_id", doctorId);
+  const end_date = params.get("to") || null;
+  const start_date = params.get("from") || null;
+  const doctor_id = params.get("doctor_id") || null;
 
   const query = useQuery({
-    queryKey: [GET_DASHBOARD_MATRIX, doctorId, fromDate, toDate].filter(
+    queryKey: [GET_DASHBOARD_MATRIX, doctor_id, start_date, end_date].filter(
       Boolean
     ),
     queryFn: (): Promise<AxiosResponse<{ data: IDashboardMatrix }>> => {
-      return api.get(url.toString());
+      return api.get(GET_DASHBOARD_MATRIX, { doctor_id, start_date, end_date });
     },
   });
 
   return {
     ...query,
-    fromDate,
-    toDate,
+    fromDate: start_date,
+    toDate: end_date,
   };
 };
 
 export const useGetPackages = () => {
   const params = useSearchParams();
 
-  const doctorId = params.get("doctor_id") || false;
-  const fromDate = params.get("from") || false;
-  const toDate = params.get("to") || false;
+  const end_date = params.get("to") || null;
   const type = params.get("p_type") || "all";
-
-  const url = new URL(GET_PACKAGES_MATRIX, process.env.NEXT_PUBLIC_API_URL);
-
-  if (type !== "all") url.searchParams.append("type", type);
-  if (toDate) url.searchParams.append("end_date", toDate);
-  if (fromDate) url.searchParams.append("start_date", fromDate);
-  if (doctorId) url.searchParams.append("doctor_id", doctorId);
+  const start_date = params.get("from") || null;
+  const doctor_id = params.get("doctor_id") || null;
 
   return useQuery({
-    queryKey: [GET_PACKAGES_MATRIX, doctorId, fromDate, toDate, type].filter(
-      Boolean
-    ),
+    queryKey: [
+      GET_PACKAGES_MATRIX,
+      doctor_id,
+      start_date,
+      end_date,
+      type,
+    ].filter(Boolean),
     queryFn: (): Promise<AxiosResponse<{ data: IPackageMatrix[] }>> => {
-      return api.get(url.toString());
+      return api.get(GET_PACKAGES_MATRIX, {
+        doctor_id,
+        start_date,
+        end_date,
+        ...(type !== "all" && { type }),
+      });
     },
   });
 };
@@ -71,16 +67,12 @@ export const useGetPackages = () => {
 export const useWeekPerformance = () => {
   const params = useSearchParams();
 
-  const doctorId = params.get("doctor_id") || false;
-
-  const url = new URL(GET_WEEK_PERFORMANCE, process.env.NEXT_PUBLIC_API_URL);
-
-  if (doctorId) url.searchParams.append("doctor_id", doctorId);
+  const doctor_id = params.get("doctor_id") || null;
 
   return useQuery({
-    queryKey: [GET_WEEK_PERFORMANCE, doctorId].filter(Boolean),
+    queryKey: [GET_WEEK_PERFORMANCE, doctor_id].filter(Boolean),
     queryFn: (): Promise<AxiosResponse<{ data: IWeekPerformance[] }>> => {
-      return api.get(url.toString());
+      return api.get(GET_WEEK_PERFORMANCE, { doctor_id });
     },
   });
 };

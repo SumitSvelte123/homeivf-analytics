@@ -5,7 +5,7 @@ export interface IStats {
   value: number;
   description?: string;
   accesskey: keyof IDashboardMatrix;
-  slug: string;
+  slug: keyof IDashboardWeekSlug;
 }
 
 export type StatType =
@@ -66,4 +66,19 @@ export interface IWeekPerformance {
   this_week_count: number;
   growth_status: IGrowthType;
   this_week_growth_compared_previous_week: string;
+}
+
+export interface IDashboardWeekSlug {
+  "opd-booked": number;
+  "opd-done": number;
+  "ipd-booked": number;
+  "ipd-done": number;
+  "patient-registered": number;
+  "patient-registered-female": number;
+  "patient-registered-male": number;
+  "patient-enrolled": number;
+  "blood-test": number;
+  "ipd-partial": number;
+  kits: number;
+  prescription: number;
 }

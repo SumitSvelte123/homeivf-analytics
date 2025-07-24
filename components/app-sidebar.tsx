@@ -28,8 +28,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { AppLogo } from "./app.logo";
 import { cn } from "@/lib/utils";
+import { AppLogo } from "./app.logo";
 import { LogoutAction } from "./auth/logout";
 
 const menuData = [
@@ -41,7 +41,7 @@ const menuData = [
       {
         title: "Clinical Metrics",
         icon: <Syringe />,
-        url: "/",
+        url: "/dashboard",
       },
       {
         title: "Operational Metrics",
