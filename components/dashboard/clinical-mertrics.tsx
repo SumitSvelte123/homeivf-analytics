@@ -12,7 +12,7 @@ export const ClinicalMetrics = () => {
   const metrics = data?.data.data || null;
 
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-5">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
       {STATS.map((stats) => {
         let description = "Metrics pulled for ";
         if (fromDate && toDate) {
