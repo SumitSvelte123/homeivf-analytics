@@ -14,8 +14,6 @@ import { UnderDevelopment } from "@/components/metrics/under-development";
 
 const loadComponentBySlug = async (slug: keyof IDashboardWeekSlug | null) => {
   switch (slug) {
-    case "opd-done":
-      return (await import("@/components/metrics/opd/opd-done")).default;
     case "opd-booked":
       return (await import("@/components/metrics/opd/opd-booked")).default;
     default:
@@ -54,7 +52,7 @@ const MetricsPage = async ({
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="p-5 shadow border rounded-lg">
+      <div className="p-5 shadow border rounded-lg overflow-auto">
         <Suspense fallback="Loading....">
           <Component />
         </Suspense>
