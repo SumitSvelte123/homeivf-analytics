@@ -17,9 +17,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { WEEK_STATS } from "@/lib/constants";
+import { TableSkeleton } from "@/components/skeleton";
 import { useWeekPerformance } from "@/hooks/use-metrics";
 import type { IWeekPerformance } from "@/types/matrix.type";
-import { TableSkeleton } from "../skeleton";
 
 type ISortType = "current_asc" | "current_desc" | "all";
 
@@ -75,7 +75,7 @@ export const StatsTable = () => {
                 Current Week <ArrowUpDown size={14} />
               </button>
             </TableHead>
-            <TableHead>Last Week</TableHead>
+            <TableHead className="text-center">Last Week</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -97,9 +97,9 @@ export const StatsTable = () => {
               <TableCell className="text-sm font-semibold">
                 {performance.this_week_count.toLocaleString()}
               </TableCell>
-              <TableCell className="text-sm font-semibold">
+              <TableCell className="text-sm font-semibold text-left">
                 <div className="flex gap-2 justify-center">
-                  <span className="w-6">
+                  <span className="w-10">
                     {performance.this_week_growth_compared_previous_week}
                   </span>
                   {performance.growth_status === "positive" && (
